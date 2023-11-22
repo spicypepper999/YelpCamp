@@ -1,0 +1,59 @@
+<% layout('/layouts/boilerplate') %>
+    <div>
+        <h1 class="text-center">New Campground</h1>
+        <div class="col-6 offset-3">
+            <form action="/campgrounds" method="POST" novalidate class="needs-validation">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Campground Title</label>
+                    <input class="form-control" type="text" id="title" name="campground[title]" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="location">Campground Location</label>
+                    <input class="form-control" type="text" id="location" name="campground[location]" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="image">Image URL</label>
+                    <input class="form-control" type="text" id="image" name="campground[image]" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="price">Campground Price</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="price-label">$</span>
+                        <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price" aria-describedby="price-label" name="campground[price]" required>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="description">Campground Description</label>
+                    <textarea class="form-control" type="text" id="description" name="campground[description]" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-success" type="submit">Post Campground</button>
+                </div>
+            </form>
+            <a href="/campgrounds">Back to All Campgrounds</a>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
